@@ -2,7 +2,7 @@
 
 PUBLIC MprOsThread mprGetCurrentOsThread(void)
 {   
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     return (MprOsThread) pthread_self();
 #endif
 }

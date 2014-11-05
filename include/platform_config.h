@@ -28,11 +28,11 @@
 #endif
 
 #if defined(linux) || defined(__linux) || defined(__linux__)
-#define PLATFORM_LINUX
+#define PLATFORM_LINUX 1
 #elif defined(_WIN32) || defined(__WIN32__) || defined(WIN32)
-#define PLATFORM_WIN32
+#define PLATFORM_WIN32 1
 #elif defined(macintosh) || defined(__APPLE__) || defined(__APPLE_CC__)
-#define PLATFORM_MACOS
+#define PLATFORM_MACOS 1
 #else
 #warning "Unsupported platform"
 #endif

@@ -4,7 +4,7 @@
 PUBLIC MprMutex *mprCreateLock()
 {
     MprMutex *lock = NULL;
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     pthread_mutexattr_t attr;
     if (unlikely(pthread_mutexattr_init(&attr)))
         abort();
@@ -19,7 +19,7 @@ PUBLIC MprMutex *mprCreateLock()
 
 PUBLIC MprMutex *mprInitLock(MprMutex *lock)
 {
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     pthread_mutexattr_t attr;
     pthread_mutexattr_init(&attr);
     pthread_mutexattr_settype(&attr, PTHREAD_MUTEX_RECURSIVE_NP);
@@ -33,7 +33,7 @@ PUBLIC void mprLock(MprMutex *lock)
 {
     if (lock == NULL)
         return;
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     pthread_mutex_lock(&lock->cs);
 #endif
     lock->owner = mprGetCurrentOsThread();
@@ -45,7 +45,7 @@ PUBLIC int mprTryLock(MprMutex *lock)
     if (lock == NULL)
         return 0;
     
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     rc = (pthread_mutex_trylock(&lock->cs) != 0);
 #endif
     
@@ -58,7 +58,7 @@ PUBLIC void mprUnlock(MprMutex *lock)
 {
     if (lock == NULL)
         return;
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     pthread_mutex_unlock(&lock->cs);
 #endif
 }

@@ -3,18 +3,18 @@
 
 #include "platform_config.h"
 
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
 #include "pthread.h"
 #endif
 
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     typedef pthread_t   MprOsThread;
 #else
     #warning "Unsupported OS in MprThread definition in mpr.h"
 #endif
 
 typedef struct MprMutex {
-#if PLATFORM_UNIX
+#if PLATFORM_LINUX
     pthread_mutex_t cs;
 #else
     #warning "Unsupported OS in MprMutex definition in mpr.h"
