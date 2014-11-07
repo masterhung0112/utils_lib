@@ -5,10 +5,14 @@
 
 #if PLATFORM_LINUX
 #include "pthread.h"
+#elif PLATFORM_WIN32
+#include <Windows.h>
 #endif
 
 #if PLATFORM_LINUX
     typedef pthread_t   MprOsThread;
+#elif PLATFORM_WIN32
+	typedef int			MprOsThread;
 #else
     #warning "Unsupported OS in MprThread definition in mpr.h"
 #endif
@@ -16,6 +20,8 @@
 typedef struct MprMutex {
 #if PLATFORM_LINUX
     pthread_mutex_t cs;
+#elif PLATFORM_WIN32
+	CRITICAL_SECTION cs;
 #else
     #warning "Unsupported OS in MprMutex definition in mpr.h"
 #endif

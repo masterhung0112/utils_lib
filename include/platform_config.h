@@ -1,7 +1,7 @@
 #ifndef __PLATFORM_CONFIG__
 #define __PLATFORM_CONFIG__
 
-#if defined(_MSVC)
+#if defined(_MSC_VER)
 #define API_EXPORT          __declspec(dllexport)
 #define API_IMPORT          __declspec(dllimport)
 #define API_INLINE          __forceinline
